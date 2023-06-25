@@ -1,0 +1,31 @@
+<?php
+include("../Models/cursoDao.php");
+if (isset($_POST['btnActualizar'])) { //Modificar
+    $id = $_POST['id'];
+    $cod = $_POST['cod'];
+    $nom = $_POST['nom'];
+    $cic = $_POST['cic'];
+    $nc = $_POST['numCre'];
+    $m = modificar($id,$cod,$nom,$cic,$nc);
+    header("Location: ../index.php?m=$m");
+} else if (isset($_GET['id'])) { //Eliminar
+    $id = $_GET['id'];
+    $m = eliminar($id);
+    header("Location: ../index.php?m=$m");
+} else if (isset($_POST['btnRegistrar'])) { //Registrar
+    $cod = $_POST['cod'];
+    $nom = $_POST['nom'];
+    $cic = $_POST['cic'];
+    $numC = $_POST['numCre'];
+    $m = insertar($cod, $nom, $cic, $numC);
+    header("Location: ../index.php?m=$m");
+}
+function consultarCur($idC)
+{
+    return consultarCurso($idC);
+}
+function listarCurso()
+{
+    return getCursos();
+}
+?>
